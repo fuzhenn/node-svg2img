@@ -71,5 +71,18 @@ describe('Convert SVG', function () {
         })
     });
 
-
+    it('convert a svg with a image', function (done) {
+        var imageUrl = 'https://www.baidu.com/img/bd_logo1.png';
+        Image64.encode(imageUrl, {}, function (err, base64) {
+            var imageUrl = 'https://www.baidu.com/img/bd_logo1.png';
+            var svgString = util.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="540" height="258" ' +
+                'viewBox="0 0 540 258"><image width="540" height="258" x="0" y="0" href="%s"></image></svg>', 'data:image/png;base64,' + base64.toString('base64'));
+            svg2img(svgString, function(error, buffer) {
+                expect(error).not.to.be.ok();
+                expect(Buffer.isBuffer(data)).to.be.ok();
+                expect(data.length).to.be.above(0);
+                done();
+            });
+        });
+    });
 });
