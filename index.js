@@ -27,7 +27,7 @@ function svg2img(svg, options, callback) {
         }
         if (options.width || options.height) {
             content = scale(content, options.width, options.height);
-        }        
+        }
         var format = options.format;
         if (!format) {
             format = 'png';
@@ -57,7 +57,7 @@ function svg2img(svg, options, callback) {
 
 function convert(svgContent) {
     var canvas = new Canvas();
-    canvg(canvas, svgContent, { ignoreMouse: true, ignoreAnimation: true });
+    canvg(canvas, svgContent, { ignoreMouse: true, ignoreAnimation: true, ImageClass: Canvas.Image });
     return canvas;
 }
 
