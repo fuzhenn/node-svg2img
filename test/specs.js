@@ -79,7 +79,7 @@ describe('Convert SVG', function () {
             var imageUrl = 'https://www.baidu.com/img/bd_logo1.png';
             var svgString = util.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="540" height="258" ' +
                 'viewBox="0 0 540 258"><image width="540" height="258" x="0" y="0" href="%s"></image></svg>', 'data:image/png;base64,' + base64.toString('base64'));
-            svg2img(svgString, function(error, buffer) {
+            svg2img(svgString, function(error, data) {
                 expect(error).not.to.be.ok();
                 expect(Buffer.isBuffer(data)).to.be.ok();
                 expect(data.length).to.be.above(0);
