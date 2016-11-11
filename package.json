@@ -9,12 +9,13 @@
   },
   "main": "index.js",
   "scripts": {
-      "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
     "mocha": "^2.4.5",
-    "should": "^8.2.2"
+    "should": "^8.2.2",
+    "node-base64-image": "^1.0.3"
   },
   "dependencies": {
     "atob": "^2.0.0",
