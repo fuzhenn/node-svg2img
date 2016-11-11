@@ -2,7 +2,8 @@ var svg2img = require('../index'),
     expect = require('expect.js'),
     btoa = require('btoa'),
     fs = require('fs'),
-    Image64 = require('node-base64-image');
+    Image64 = require('node-base64-image'),
+    util = require('util');
 describe('Convert SVG', function () {
     it('convert a svg file to png',function(done) {
         svg2img(__dirname+'/ph.svg', function(error, data) {
