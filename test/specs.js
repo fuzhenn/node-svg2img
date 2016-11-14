@@ -80,16 +80,9 @@ describe('Convert SVG', function () {
         })
     });
 
-<<<<<<< HEAD
     it('convert a svg with an image', function (done) {
         var imageUrl = 'https://www.baidu.com/img/bd_logo1.png';
         Image64.encode(imageUrl, {}, function (err, base64) {            
-=======
-    it('convert a svg with a image', function (done) {
-        var imageUrl = 'https://www.baidu.com/img/bd_logo1.png';
-        Image64.encode(imageUrl, {}, function (err, base64) {
-            var imageUrl = 'https://www.baidu.com/img/bd_logo1.png';
->>>>>>> origin/master
             var svgString = util.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="540" height="258" ' +
                 'viewBox="0 0 540 258"><image width="540" height="258" x="0" y="0" href="%s"></image></svg>', 'data:image/png;base64,' + base64.toString('base64'));
             svg2img(svgString, function(error, data) {
@@ -100,7 +93,6 @@ describe('Convert SVG', function () {
             });
         });
     });
-<<<<<<< HEAD
 
     it('scale a svg with width and height in style', function (done) {
         svg2img(__dirname+'/fy.svg', {width : 20, height: 30}, function (err, data) {
@@ -113,6 +105,4 @@ describe('Convert SVG', function () {
             img.src = data;
         });
     });
-=======
->>>>>>> origin/master
 });
