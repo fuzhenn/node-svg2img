@@ -77,7 +77,8 @@ function scale(svgContent, w, h) {
     var props = {};
     var splits = svgTag.substring(4, svgTag.length-1).split(' ');
     var lastKey;
-    for (var i = 0; i < splits.length; i++) {
+    var i;
+    for (i = 0; i < splits.length; i++) {
         if (splits[i] === '') {
             continue;
         } else {
@@ -102,6 +103,30 @@ function scale(svgContent, w, h) {
         props['viewBox'] = '"'+[0,0,ow?ow:w,oh?oh:h].join(' ')+'"';
     }
     props['preserveAspectRatio'] = '"none"';
+
+    // update width and height in style attribute
+    if (props['style'] && props['style'].length > 2) {
+        var styleUpdated = false;
+        var styleStr = props['style'].substring(1, props['style'].length - 1);
+        var styles = styleStr.split(';');
+        for (var i = 0; i < styles.length; i++) {
+            var styleKV = styles[i].split(':');
+            if (styleKV.length === 2) {
+                var key = styleKV[0].trim();
+                if (key === 'width') {
+                    styles[i] = 'width : ' + w +'px';
+                    styleUpdated = true;
+                } else if (key === 'height') {
+                    styles[i] = 'height : ' + h +'px';
+                    styleUpdated = true;
+                }
+            }
+        }
+        if (styleUpdated) {
+            props['style'] = '"' + styles.join(';') + '"';
+        }
+    }
+
     var newSvgTag = ['<svg'];
     for (var p in props) {
         newSvgTag.push(p+'='+props[p]);
