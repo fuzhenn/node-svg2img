@@ -1,6 +1,6 @@
 # node-svg2img
 
-[![Circle CI](https://circleci.com/gh/FuZhenn/node-svg2img.svg?style=svg)](https://circleci.com/gh/FuZhenn/node-svg2img)
+[![Circle CI](https://circleci.com/gh/fuzhenn/node-svg2img.svg?style=svg)](https://circleci.com/gh/fuzhenn/node-svg2img)
 
 A high-performance in-memory convertor to convert svg to png/jpeg images for Node.
 Based on [canvg](https://github.com/gabelerner/canvg) and [node-canvas](https://github.com/Automattic/node-canvas)
