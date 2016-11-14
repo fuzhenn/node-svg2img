@@ -2,13 +2,7 @@ var svg2img = require('../index'),
     expect = require('expect.js'),
     btoa = require('btoa'),
     fs = require('fs'),
-<<<<<<< HEAD
-<<<<<<< HEAD
     Image = require('canvas').Image,
-=======
->>>>>>> master
-=======
->>>>>>> origin/master
     Image64 = require('node-base64-image'),
     util = require('util');
 describe('Convert SVG', function () {
