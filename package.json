@@ -20,8 +20,8 @@
   "dependencies": {
     "atob": "^2.0.0",
     "btoa": "^1.1.2",
-    "canvas": "^2.0.0-alpha.13",
-    "canvg": "^1.5.3"
+    "canvas": "^2.6.1",
+    "canvg": "^3.0.6"
   },
   "readmeFilename": "README.md"
 }
