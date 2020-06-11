@@ -21,7 +21,7 @@
     "atob": "^2.0.0",
     "btoa": "^1.1.2",
     "canvas": "^2.6.1",
-    "canvg": "^3.0.6"
+    "canvg": "^2.0.0"
   },
   "readmeFilename": "README.md"
 }
