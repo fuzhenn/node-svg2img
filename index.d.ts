@@ -14,5 +14,6 @@ export interface svg2imgOptions {
   quality?: number;
 }
 
-declare const svg2img: (svg: string, options: svg2imgOptions | Callback, callback: Callback) => void;
+function svg2img(svg: string, options: svg2imgOptions, callback: Callback): void;
+function svg2img(svg: string, callback: Callback): void;
 export default svg2img;
