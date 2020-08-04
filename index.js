@@ -1,4 +1,5 @@
 var canvg = require('canvg'),
+    jsdom = require('jsdom'),
     atob = require('atob'),
     fs = require('fs'),
     http = require('http'),
@@ -20,7 +21,7 @@ function svg2img(svg, options, callback) {
     if (!options) {
         options = {};
     }
-    loadSVGContent(svg, function(error, content) {
+    loadSVGContent(svg, async function(error, content) {
         if (error) {
             callback(error);
             return;
@@ -32,14 +33,19 @@ function svg2img(svg, options, callback) {
         if (!format) {
             format = 'png';
         }
-        var canvas = convert(content, options, callback);
+        var canvas;
+        try {
+            canvas = await convert(content, options, callback);
+        } catch (error) {
+            callback(error);
+        }
         var stream;
         if (format === 'jpg' || format === 'jpeg') {
-            stream = canvas.jpegStream({
+            stream = canvas.createJPEGStream({
                 quality: options['quality'] // JPEG quality (0-100) default: 75
             });
         } else {
-            stream = canvas.pngStream();
+            stream = canvas.createPNGStream();
         }
         var data = [];
         var pos = 0;
@@ -55,10 +61,13 @@ function svg2img(svg, options, callback) {
     });
 }
 
-function convert(svgContent, options, callback) {
+async function convert(svgContent, options, callback) {
     var canvas = Canvas.createCanvas(options.width||100, options.height||100);
+    var ctx = canvas.getContext('2d');
     try {
-        canvg(canvas, svgContent, { ignoreMouse: true, ignoreAnimation: true, ImageClass: Canvas.Image });
+        const jsdomParser = (new jsdom.JSDOM('', { resources: "usable", runScripts: "dangerously" })).window.DOMParser;
+        const renderer = canvg.Canvg.fromString(ctx, svgContent, { DOMParser: jsdomParser, ignoreMouse: true, ignoreAnimation: true, ImageClass: Canvas.Image });
+        await renderer.render();
     } catch (error) {
         callback(error);
     }
