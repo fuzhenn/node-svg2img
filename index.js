@@ -6,6 +6,9 @@ var canvg = require('canvg'),
     https = require('https'),
     Canvas = require('canvas');
 
+var jsdomWindow = (new jsdom.JSDOM()).window;
+var jsdomParser = jsdomWindow.DOMParser;
+
 /**
  * Main method
  * @param  {String}   svg      - a svg string, or a base64 string starts with "data:image/svg+xml;base64", or a file url (http or local)
@@ -65,8 +68,7 @@ async function convert(svgContent, options, callback) {
     var canvas = Canvas.createCanvas(options.width||100, options.height||100);
     var ctx = canvas.getContext('2d');
     try {
-        const jsdomParser = (new jsdom.JSDOM('', { resources: "usable", runScripts: "dangerously" })).window.DOMParser;
-        const renderer = canvg.Canvg.fromString(ctx, svgContent, { DOMParser: jsdomParser, ignoreMouse: true, ignoreAnimation: true, ImageClass: Canvas.Image });
+        const renderer = canvg.Canvg.fromString(ctx, svgContent, { DOMParser: jsdomWindow.DOMParser, window: jsdomWindow, ignoreMouse: true, ignoreAnimation: true, ImageClass: Canvas.Image });
         await renderer.render();
     } catch (error) {
         callback(error);
