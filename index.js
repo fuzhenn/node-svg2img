@@ -7,7 +7,6 @@ var canvg = require('canvg'),
     Canvas = require('canvas');
 
 var jsdomWindow = (new jsdom.JSDOM()).window;
-var jsdomParser = jsdomWindow.DOMParser;
 
 /**
  * Main method
