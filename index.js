@@ -69,7 +69,7 @@ async function convert(svgContent, options, callback) {
     var canvas = Canvas.createCanvas(options.width||100, options.height||100);
     var ctx = canvas.getContext('2d');
     try {
-        const renderer = canvg.Canvg.fromString(ctx, svgContent, { DOMParser: jsdomWindow.DOMParser, window: jsdomWindow, ignoreMouse: true, ignoreAnimation: true, ImageClass: Canvas.Image });
+        const renderer = canvg.Canvg.fromString(ctx, svgContent, { DOMParser: jsdomWindow.DOMParser, window: jsdomWindow, ignoreMouse: true, ignoreAnimation: true, createCanvas: Canvas.createCanvas, ImageClass: Canvas.Image });
         await renderer.render();
     } catch (error) {
         callback(error);
