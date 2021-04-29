@@ -172,12 +172,15 @@ function loadSVGContent(svg, callback) {
     if (Buffer.isBuffer(svg)) {
         svg = svg.toString('utf-8');
     }
-    if (svg.indexOf('data:image/svg+xml;base64,') >= 0) {
-        callback(null,atob(svg.substring('data:image/svg+xml;base64,'.length)));
+    
+    const base64Scheme = 'data:image/svg+xml;base64,';
+
+    if (svg.indexOf(base64Scheme) === 0) {
+        callback(null,atob(svg.substring(base64Scheme.length)));
     } else if (svg.indexOf('<svg') >= 0) {
-        callback(null, svg);
+        callback(null, svg.substring(svg.indexOf('<svg')));
     } else {
-        if (svg.indexOf('http://')>=0 || svg.indexOf('https://')>=0) {
+        if (svg.indexOf('http://')===0 || svg.indexOf('https://')===0) {
             loadRemoteImage(svg, callback);
         } else {
             fs.readFile(svg, function(error, data) {
