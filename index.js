@@ -172,7 +172,7 @@ function loadSVGContent(svg, callback) {
     if (Buffer.isBuffer(svg)) {
         svg = svg.toString('utf-8');
     }
-    if (svg.indexOf('data:image/svg+xml;base64,') >= 0) {
+    if (svg.indexOf('data:image/svg+xml;base64,') >= 0 && !/^<svg/.test(svg)) {
         callback(null,atob(svg.substring('data:image/svg+xml;base64,'.length)));
     } else if (svg.indexOf('<svg') >= 0) {
         callback(null, svg);

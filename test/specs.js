@@ -62,6 +62,16 @@ describe('Convert SVG', function () {
         })
     });
 
+    it('convert a svg string with data URI to png',function(done) {
+        var svg = fs.readFileSync(__dirname+'/atob.svg');
+        svg2img(svg, null, function(error, data) {
+            expect(error).not.to.be.ok();
+            expect(Buffer.isBuffer(data)).to.be.ok();
+            expect(data.length).to.be.above(0);
+            done();
+        })
+    });
+
     it('convert a svg string to jpg',function(done) {
         var svg = fs.readFileSync(__dirname+'/ph.svg');
         svg2img(svg, {format:'jpeg'} ,function(error, data) {
