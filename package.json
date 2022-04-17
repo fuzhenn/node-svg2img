@@ -1,28 +1,36 @@
 {
   "name": "svg2img",
-  "version": "0.9.4",
-  "description": "A high-performance in-memory convertor to convert svg to png/jpeg images for Node. ",
+  "version": "1.0.0-beta.0",
+  "description": "A high-performance in-memory convertor to convert SVG to png/jpeg images for Node.js.",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/fuzhenn/node-svg2img"
   },
   "main": "index.js",
+  "files": [
+    "index.d.ts",
+    "index.js"
+  ],
   "scripts": {
     "test": "mocha test/specs.js"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
-    "mocha": "^8.1.1",
-    "node-base64-image": "^1.0.7",
-    "should": "^13.2.3"
+    "mocha": "^8.4.0",
+    "node-base64-image": "^1.0.7"
   },
   "dependencies": {
+    "@resvg/resvg-js": "^2.0.0-beta.0",
     "atob": "^2.0.0",
     "btoa": "^1.1.2",
-    "canvas": "^2.6.0",
-    "canvg": "3.0.7",
-    "jsdom": "^16.3.0"
+    "jimp": "^0.16.1"
   },
-  "readmeFilename": "README.md"
+  "engines": {
+    "node": ">= 10"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
 }
