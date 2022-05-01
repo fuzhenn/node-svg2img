@@ -13,7 +13,7 @@
     "index.js"
   ],
   "scripts": {
-    "test": "mocha test/specs.js"
+    "test": "mocha test/specs.js --timeout 5000"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
