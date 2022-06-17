@@ -54,6 +54,6 @@ export type ResvgRenderOptions = {
   logLevel?: 'off' | 'error' | 'warn' | 'info' | 'debug' | 'trace'
 }
 
-declare function svg2img(svg: string, options?: svg2imgOptions, callback: Callback): void;
+declare function svg2img(svg: string, options?: svg2imgOptions, callback?: Callback): void;
 declare function svg2img(svg: string, callback: Callback): void;
 export default svg2img;
