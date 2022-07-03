@@ -3,7 +3,7 @@ var atob = require('atob');
 var http = require('http');
 var https = require('https');
 
-var jimp = require('jimp');
+var jimp = require('jimp-compact');
 var { Resvg } = require('@resvg/resvg-js');
 
 /**

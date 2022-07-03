@@ -2,7 +2,7 @@ var fs = require('fs');
 
 var expect = require('expect.js');
 var btoa = require('btoa');
-var jimp = require('jimp');
+var jimp = require('jimp-compact');
 var assert = require('assert');
 
 var svg2img = require('../index');
@@ -53,15 +53,15 @@ describe('Convert SVG', function () {
         })
     });
 
-    // it('convert a remote svg file to png', function (done) {
-    //     this.timeout(5000);
-    //     svg2img('https://iconfont.alicdn.com/s/5335462e-5d18-4018-9091-9ff7451368f0_origin.svg', function (error, data) {
-    //         expect(error).not.to.be.ok();
-    //         expect(Buffer.isBuffer(data)).to.be.ok();
-    //         expect(data.length).to.be.above(0);
-    //         done();
-    //     })
-    // });
+    it('convert a remote svg file to png', function (done) {
+        this.timeout(5000);
+        svg2img('https://at.alicdn.com/s/5335462e-5d18-4018-9091-9ff7451368f0_origin.svg', function (error, data) {
+            expect(error).not.to.be.ok();
+            expect(Buffer.isBuffer(data)).to.be.ok();
+            expect(data.length).to.be.above(0);
+            done();
+        })
+    });
 
     it('convert a svg string to png', function (done) {
         var svg = fs.readFileSync(__dirname + '/ph.svg');

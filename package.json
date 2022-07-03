@@ -21,10 +21,10 @@
     "node-base64-image": "^1.0.7"
   },
   "dependencies": {
-    "@resvg/resvg-js": "^2.0.0",
+    "@resvg/resvg-js": "^2.1.0",
     "atob": "^2.0.0",
     "btoa": "^1.1.2",
-    "jimp": "^0.16.1"
+    "jimp-compact": "^0.16.1-2"
   },
   "engines": {
     "node": ">= 10"
