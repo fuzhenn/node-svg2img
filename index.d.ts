@@ -1,10 +1,6 @@
 type Callback = (err: any, buffer: any) => any;
 
-declare enum Format {
-  jpeg = 'jpeg',
-  jpg = 'jpg',
-  png = 'png',
-}
+type Format = 'jpeg' | 'jpg' | 'png';
 
 export interface svg2imgOptions {
   resvg?: ResvgRenderOptions;
