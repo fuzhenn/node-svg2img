@@ -18,7 +18,7 @@
   "devDependencies": {
     "expect.js": "^0.3.1",
     "mocha": "^8.4.0",
-    "node-base64-image": "^1.0.7"
+    "node-base64-image": "^2.0.5"
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.1.0",
