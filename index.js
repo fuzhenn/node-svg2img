@@ -2,9 +2,11 @@ var fs = require('fs');
 var atob = require('atob');
 var http = require('http');
 var https = require('https');
+var fetch = require("node-fetch")
 
 var jimp = require('jimp-compact');
 var { Resvg } = require('@resvg/resvg-js');
+var { promisify } = require('util');
 
 /**
  * Main method
@@ -44,6 +46,31 @@ function svg2img(svg, options, callback) {
                 options.resvg.background = '#fff';
             }
             var resvg = new Resvg(content, options.resvg);
+
+            // Load images
+            await Promise.all(
+                resvg.imagesToResolve().map(async url => {
+                    try {
+                        var img = await fetch(url);
+                        var imgType = img.headers.get('content-type')
+
+                        // Convert image links pointing to svg files to png
+                        if(imgType.match('svg')){ 
+                            var buffer = await svg2imgAsync(await img.text(), {})
+                        }
+                        else{
+                            var arrayBuffer = await img.arrayBuffer()
+                            var buffer = Buffer.from(arrayBuffer);
+                        }
+
+                        resvg.resolveImage(url, buffer);
+
+                    } catch (err) {
+                        console.warn("Error loading", url, err.message);
+                    }
+                })
+            );
+
             pngData = resvg.render();
         } catch (error) {
             callback(error);
@@ -116,5 +143,5 @@ function isFunction(func) {
     return typeof func === 'function' || (func.constructor !== null && func.constructor == Function);
 }
 
+var svg2imgAsync = promisify(svg2img)
 exports = module.exports = svg2img;
-
